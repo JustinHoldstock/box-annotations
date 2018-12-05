@@ -1,0 +1,96 @@
+// @flow
+import Annotator from '../Annotator';
+import * as util from '../util';
+import { ANNOTATOR_EVENT, TYPES } from '../constants';
+
+const CANVAS_NODE_NAME = 'canvas';
+// Selector for image container OR multi-image container
+const ANNOTATED_ELEMENT_SELECTOR = '.bp-image, .bp-images-wrapper';
+
+class Box3DAnnotator extends Annotator {
+    /** @inheritdoc */
+    getAnnotatedEl(containerEl: HTMLElement): ?HTMLElement {
+        return containerEl.querySelector(ANNOTATED_ELEMENT_SELECTOR);
+    }
+
+    /**
+     * Returns an annotation location on an image from the DOM event or null
+     * if no correct annotation location can be inferred from the event. For
+     * point annotations, we return the (x, y) coordinates for the point
+     * with the top left corner of the image as the origin.
+     *
+     * @param {Event} event - DOM event
+     * @return {Location|null} Location object
+     */
+    getLocationFromEvent = (event: EventEmitter): ?Location => {
+        const location = null;
+
+        // let clientEvent = event;
+        // if (this.hasTouch) {
+        //     if (!event.targetTouches || event.targetTouches.length === 0) {
+        //         return location;
+        //     }
+        //     clientEvent = event.targetTouches[0];
+        // }
+
+        // // Get image tag inside viewer
+        // const imageEl = clientEvent.target;
+        // if (imageEl.nodeName.toLowerCase() !== IMAGE_NODE_NAME) {
+        //     return location;
+        // }
+
+        // // If no image page was selected, ignore, as all images have a page number
+        // const { page } = util.getPageInfo(imageEl);
+
+        // // Location based only on image position
+        // const imageDimensions = imageEl.getBoundingClientRect();
+        // let [x, y] = [clientEvent.clientX - imageDimensions.left, clientEvent.clientY - imageDimensions.top];
+
+        // // Do not create annotation if event doesn't have coordinates
+        // if (Number.isNaN(x) || Number.isNaN(y)) {
+        //     this.emit(ANNOTATOR_EVENT.error, this.localized.createError);
+        //     return location;
+        // }
+
+        // // Scale location coordinates according to natural image size
+        // const scale = util.getScale(this.annotatedElement);
+        // const rotation = Number(imageEl.getAttribute('data-rotation-angle'));
+        // [x, y] = imageUtil.getLocationWithoutRotation(x / scale, y / scale, rotation, imageDimensions, scale);
+
+        // // We save the dimensions of the annotated element so we can
+        // // compare to the element being rendered on and scale as appropriate
+        // const dimensions = {
+        //     x: imageDimensions.width / scale,
+        //     y: imageDimensions.height / scale
+        // };
+
+        // location = {
+        //     x,
+        //     y,
+        //     imageEl,
+        //     dimensions,
+        //     page
+        // };
+
+        return location;
+    };
+
+    /** @inheritdoc */
+    scaleAnnotations(data: Object) {
+        // this.setScale(data.scale);
+    }
+
+    /** @inheritdoc */
+    bindDOMListeners() {
+        this.annotatedElement.addEventListener('mouseup', this.hideAnnotations);
+        super.bindDOMListeners();
+    }
+
+    /** @inheritdoc */
+    unbindDOMListeners() {
+        this.annotatedElement.removeEventListener('mouseup', this.hideAnnotations);
+        super.bindDOMListeners();
+    }
+}
+
+export default Box3DAnnotator;

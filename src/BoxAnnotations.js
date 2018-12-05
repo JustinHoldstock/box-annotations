@@ -1,6 +1,7 @@
 // @flow
 import DocAnnotator from './doc/DocAnnotator';
 import ImageAnnotator from './image/ImageAnnotator';
+import Box3DAnnotator from './box3d/Box3DAnnotator';
 import DrawingModeController from './controllers/DrawingModeController';
 import PointModeController from './controllers/PointModeController';
 import HighlightModeController from './controllers/HighlightModeController';
@@ -26,6 +27,13 @@ const ANNOTATORS = [
         NAME: 'Image',
         CONSTRUCTOR: ImageAnnotator,
         VIEWER: ['Image', 'MultiImage'],
+        TYPE: [TYPES.point],
+        DEFAULT_TYPES: [TYPES.point]
+    },
+    {
+        NAME: 'Box3D',
+        CONSTRUCTOR: Box3DAnnotator,
+        VIEWER: ['Model3d', 'Image360'],
         TYPE: [TYPES.point],
         DEFAULT_TYPES: [TYPES.point]
     }

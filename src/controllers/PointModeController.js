@@ -2,6 +2,7 @@
 import AnnotationModeController from './AnnotationModeController';
 import DocPointThread from '../doc/DocPointThread';
 import ImagePointThread from '../image/ImagePointThread';
+import Box3DImagePointThread from '../box3d/Box3DPointThread';
 import AnnotationAPI from '../api/AnnotationAPI';
 import {
     TYPES,
@@ -141,6 +142,8 @@ class PointModeController extends AnnotationModeController {
                 return new DocPointThread(params);
             case ANNOTATOR_TYPE.image:
                 return new ImagePointThread(params);
+            case ANNOTATOR_TYPE.box3d:
+                return new Box3DImagePointThread(params);
             default:
                 return null;
         }

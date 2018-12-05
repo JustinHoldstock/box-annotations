@@ -130,7 +130,8 @@ export const TYPES = {
 
 export const ANNOTATOR_TYPE = {
     document: 'Document',
-    image: 'Image'
+    image: 'Image',
+    box3d: 'Box3D'
 };
 
 export const HIGHLIGHT_FILL = {
