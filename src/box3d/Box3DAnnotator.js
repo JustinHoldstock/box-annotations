@@ -5,7 +5,7 @@ import { ANNOTATOR_EVENT, TYPES } from '../constants';
 
 const CANVAS_NODE_NAME = 'canvas';
 // Selector for image container OR multi-image container
-const ANNOTATED_ELEMENT_SELECTOR = '.bp-image, .bp-images-wrapper';
+const ANNOTATED_ELEMENT_SELECTOR = '.bp-box3d';
 
 class Box3DAnnotator extends Annotator {
     /** @inheritdoc */
